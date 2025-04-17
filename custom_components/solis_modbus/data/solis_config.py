@@ -41,6 +41,8 @@ SOLIS_INVERTERS = [
                    features=[InverterFeature.SMART_PORT]),
     InverterConfig(model="S6-EH3P", wattage=[8000, 10000, 12000, 15000], phases=3, type=InverterType.HYBRID,
                    features=[InverterFeature.SMART_PORT]),
+    InverterConfig(model="S6-EH3P10K-H-ZP", wattage=[8000, 10000, 12000, 15000], phases=3, type=InverterType.HYBRID,
+                   features=[InverterFeature.SMART_PORT]),
     InverterConfig(model="S6-EO1P", wattage=[4000, 5000], phases=1, type=InverterType.HYBRID,
                    features=[InverterFeature.SMART_PORT]),
     InverterConfig(model="S6-GR1P", wattage=[3000, 3600, 4000, 4600, 5000, 6000], phases=1, type=InverterType.GRID,

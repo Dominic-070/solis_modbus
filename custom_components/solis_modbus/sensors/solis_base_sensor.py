@@ -76,6 +76,22 @@ class SolisBaseSensor:
             if self.controller.inverter_config.model in ("RHI-1P", "RHI-3P", "RAI-3K-48ES-5G"):
                 self.multiplier = 1
 
+    def s6_eh3p10k_h_zp_adjustment(self):
+        """Adjust multiplier for S6-EH3P10K-H-ZP model and relevant energy registers."""
+        # Assuming controller has inverter_config with model attribute
+        if hasattr(self.controller, 'inverter_config') and self.controller.inverter_config.model == "S6-EH3P10K-H-ZP":
+            s6_eh3p10k_energy_registers: Set[int] = {
+                33161, 33162, # Total Energy Bought (assuming 2 registers)
+                33163,       # Total Energy Sold
+                33164,       # Total Load Energy
+                33165, 33166, # Total Battery Charge Energy (assuming 2 registers)
+                33167,       # Total Battery Discharge Energy
+                33168        # Total PV Energy
+            }
+            # Gebruik set(self.registrars) voor efficiënte intersectie controle
+            if s6_eh3p10k_energy_registers.intersection(set(self.registrars)):
+                self.multiplier = 0.01
+
 
     @property
     def min_max(self):
